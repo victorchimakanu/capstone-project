@@ -10,17 +10,27 @@ contract Token {
     uint256 public totalSupply; 
 
     mapping(address => uint256) public balanceOf;
+    mapping(address => mapping( address => uint256)) public allowance;
 
     event Transfer(
         address indexed from, 
         address indexed to , 
-        uint256 value ); 
+        uint256 value
+        ); 
+
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+        );
+
 
     constructor (
     string memory _name, 
     string memory _symbol, 
     uint256 _totalSupply
-        ) {
+
+     ){
     name = _name;
     symbol = _symbol;
     totalSupply = _totalSupply * (10**decimals); 
@@ -47,5 +57,19 @@ returns (bool success)
 
     return true;
 }
+function approve(address _spender, uint256 _value) 
+public
+ returns (bool success)
+ 
+{
+ require(_spender != address (0));
+
+allowance[msg.sender][_spender]= _value;
+
+emit Approval(msg.sender, _spender, _value);
+
+return true;
+}
+
 }
 
