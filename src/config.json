@@ -1,3 +1,4 @@
+
 {
     "31337":{
         "exchange":{
@@ -14,8 +15,13 @@
 
         "mDAI":{
             "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
-        }
+        },
 
+        "explorerURL": "#"
+
+    },
+    "42" :{
+       "explorerURL": "https://kovan.etherscan.io/"
 
     }
 }

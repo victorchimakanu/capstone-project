@@ -1,46 +1,52 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { ethers } from 'ethers';
 import config from '../config.json';
-// import TOKEN_ABI from '../abis/Token.json'; 
-//import store from '../store/store';
+//import { ethers } from 'ethers';
+ // import TOKEN_ABI from '../abis/Token.json'; 
+// import store from '../store/store';
 
-import { 
-  loadProvider, 
-  loadNetwork, 
+
+import {
+  loadProvider,
+  loadNetwork,
   loadAccount,
   loadTokens,
   loadExchange
-} from '../store/interactions'; 
+} from '../store/interactions';
 
- 
+import Navbar from './Navbar'
+
 function App() {
   const dispatch = useDispatch()
 
   const loadBlockchainData = async () => {
-
-    //connect ethers to blockchain 
+    // Connect Ethers to blockchain
     const provider = loadProvider(dispatch)
 
-    //fetch current networks chainID (i.e hardhat: 31337)
-    const chainId = await loadNetwork(provider,dispatch)
-    
-    //fetch current account & balance from metamask
-    await loadAccount(provider, dispatch) //gets account from metamask 
+    // Fetch current network's chainId (e.g. hardhat: 31337, kovan: 42)
+    const chainId = await loadNetwork(provider, dispatch)
 
-    // load Token smart contract 
+    // Reload page when network changes
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+
+    // Fetch current account & balance from Metamask when changed
+    window.ethereum.on('accountsChanged', () => {
+      loadAccount(provider, dispatch)
+    })
+
+    // Load token smart contracts
     const DApp = config[chainId].DApp
     const mETH = config[chainId].mETH
-     await loadTokens(provider, [DApp.address, mETH.address], dispatch) // PAIR 
+    await loadTokens(provider, [DApp.address, mETH.address], dispatch)
 
-     // Load exchange smart Contract
-     const exchangeConfig = config[chainId].exchange
-     await loadExchange(provider, exchangeConfig.address, dispatch)
-    
-    
-
+    // Load exchange smart contract
+    const exchangeConfig = config[chainId].exchange
+    await loadExchange(provider, exchangeConfig.address, dispatch)
   }
+
   useEffect(() => {
     loadBlockchainData()
   })
@@ -48,7 +54,7 @@ function App() {
   return (
     <div>
 
-      {/* Navbar */}
+      <Navbar />
 
       <main className='exchange grid'>
         <section className='exchange__section--left grid'>
@@ -80,5 +86,4 @@ function App() {
 }
 
 export default App;
-
 
