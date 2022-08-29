@@ -43,8 +43,8 @@ export const tokens = (state = DEFAULT_TOKENS_STATE, action) =>{
             return {
                 ...state,
                 loaded: true,
-                contracts: [...state.contracts, action.token], // plural contracts for multiple tokens 
-                symbols: [...state.symbols, action.symbol]
+                contracts: [ action.token], // plural contracts for multiple tokens 
+                symbols: [ action.symbol]
                
             }
 
