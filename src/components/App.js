@@ -22,7 +22,6 @@ import Transactions from './Transactions'
 import Trades from './Trades'
 import OrderBook from './OrderBook'
 
-
 function App() {
   const dispatch = useDispatch()
 
@@ -98,4 +97,3 @@ function App() {
 }
 
 export default App;
-
