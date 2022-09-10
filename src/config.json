@@ -21,8 +21,44 @@
 
     },
     "42" :{
-       "explorerURL": "https://kovan.etherscan.io/"
+            "exchange":{
+                "address": "0xBCCb689d073d0bcCF692E1b60A9BEbc22E94F627"
+            },
+    
+            "DApp":{
+                "address": "0x1F4035bbCB64312A0CcB8446761166f22fa27Ae0"
+            },
+    
+            "mETH":{
+                "address": "0x6F3694932862AB12b4D30646Cf71e3AD39a48076"
+            },
+    
+            "mDAI":{
+                "address": "0x16FD0DFac643291B23b175A5f7aF7D2B6Bf926A1"
+            },
 
-    }
+       "explorerURL": "https://kovan.etherscan.io"
+
+    },
+
+    "80001" :{
+        "exchange":{
+            "address": "0x063395320923Ed3Baf0f03e048E9DbBA18E28b18"
+        },
+
+        "DApp":{
+            "address": "0xc46E49b0AB78c219dc4c12cf3aeC9EA957EebBF2"
+        },
+
+        "mETH":{
+            "address": "0x37ac1f115991Fc493a2C085E651698620fCe10b6"
+        },
+
+        "mDAI":{
+            "address": "0xf49B6f2e9579482C17B70C7103c49ceD7A05F6d1"
+        },
+
+   "explorerURL": "https://mumbai.polygonscan.com"
+
 }
-
+}
